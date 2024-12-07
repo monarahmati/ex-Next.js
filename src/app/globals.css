@@ -4,15 +4,22 @@
 
 :root {
   --background: #f8fafc;
-  --foreground: #868686;
+  --foreground: #222121;
 }
 
-@media (prefers-color-scheme: dark) {
+
+
+[data-theme='dark'] {
+  --background: black;
+  --foreground: white;
+}
+
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #868686;
     --foreground: #f8fafc;
   }
-}
+} */
 
 body {
   color: var(--background);

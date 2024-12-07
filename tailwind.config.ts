@@ -6,10 +6,11 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
-        background: "#f8fafc",
+        // background: "#f8fafc",
         // foreground: "var(--foreground)",
       },
     },

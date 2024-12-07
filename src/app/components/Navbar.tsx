@@ -1,29 +1,23 @@
 'use client'
 
-import { BsMoon } from "react-icons/bs";
+import { useTheme } from "next-themes";
+import ModeToggle from "./mode_toggle";
 
 
-const modeHandler = () => {
-    console.log('mode change');
-
-}
 
 
 const Navbar = () => {
+
+    const { theme } = useTheme()
+
     return (
 
-        <nav className="bg-slate-50 shadow">
+        <nav className={theme === 'light' ? 'shadow-lg shadow-gray-100 ' : 'shadow-2xl shadow-gray-200'}>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 relative flex h-16 items-center justify-between">
                 <div className="">
                     <h1>what is the new ?</h1>
                 </div>
-
-                <button className="" onClick={modeHandler}>
-                    <div className="flex flex-direction">
-                        <BsMoon className="mx-2 mt-1" />
-                        <span>Dark Mode</span>
-                    </div>
-                </button>
+                <ModeToggle />
             </div>
         </nav >
 
