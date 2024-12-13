@@ -4,7 +4,7 @@ import useCountry from "@/hooks/use-country";
 import Navbar from "./components/Navbar";
 import CountryCard from "./components/country-card";
 import Header from "./components/Header";
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 import { ChangeEventHandler } from "react";
 
 interface countriesData {
@@ -15,7 +15,7 @@ interface countriesData {
   flags: {
     png: string
   }
-  population: string
+  population: number
   area: string
   region: string
 
@@ -27,7 +27,7 @@ export default function Home() {
   console.log(data);
 
   const [searchBar, setSearchBar] = useState<string>("")
-  const [countriesData, setCountriesData] = useState<countriesData[]>([])
+  const [filter, setFilter] = useState()
 
 
   const searchHandler: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -35,11 +35,19 @@ export default function Home() {
     setSearchBar(e.target.value)
   }
 
-  const countries = data?.filter(country =>
+  const countriesData = data?.filter(country =>
     country?.name?.common.toLowerCase().startsWith(searchBar.toLowerCase()) ||
     (`${country?.name?.common}`).toLowerCase().startsWith(searchBar.toLowerCase())
 
   )
+
+  const sortedHandler: MouseEventHandler<HTMLButtonElement> = () => {
+    const sortedData = data?.sort((a: any, b: any) => b?.population - a?.population)
+    setFilter(sortedData)
+  }
+
+
+  // const countries = countriesData || filter
 
   return (
     <div>
@@ -47,10 +55,12 @@ export default function Home() {
       <Header
         value={searchBar}
         placeholder={`Search by name`}
-        searchHandler={searchHandler} />
+        searchHandler={searchHandler}
+        sortedHandler={sortedHandler}
+      />
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 p-10 m-5">
         {
-          countries?.map((country, i) => (
+          countriesData?.map((country, i) => (
             <div key={i}>
               <CountryCard {...country} />
             </div>

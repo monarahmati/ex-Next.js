@@ -1,6 +1,6 @@
 'use client';
 
-import { MoonIcon, SunIcon } from "lucide-react";
+import { MoonStar, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 
 
@@ -18,7 +18,7 @@ const ModeToggle = () => {
         <>
             <button onClick={themeHandler}>
                 {
-                    theme === "light" ? <SunIcon className="#000" /> : <MoonIcon className="#fff" />
+                    theme === "light" ? <SunIcon className="#000" /> : <MoonStar className="#fff" />
                 }
             </button>
         </>
